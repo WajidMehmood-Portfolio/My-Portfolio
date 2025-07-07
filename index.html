@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Wajid Mehmood - Full Stack Developer specializing in web and app development">
-  <meta name="keywords" content="Wajid Mehmood, Full Stack Developer, Web Developer, App Developer, React, JavaScript, PHP, Laravel, C#, Python, Portfolio">
-  <meta name="author" content="Wajid Mehmood">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Wajid Mehmood - Full Stack Developer specializing in web and app development" />
+  <meta name="keywords" content="Wajid Mehmood, Full Stack Developer, Web Developer, App Developer, React, JavaScript, PHP, Laravel, C#, Python, Portfolio" />
+  <meta name="author" content="Wajid Mehmood" />
   <title>Wajid Mehmood | Full Stack Developer</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React & Babel -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.24.0/babel.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <script src="https://unpkg.com/@babel/standalone@7.24.0/babel.min.js" defer></script>
+
+  <!-- EmailJS & Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
 </head>
-<body class="antialiased">
+
+<body class="antialiased font-inter bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
   <div id="root"></div>
 
   <script type="text/babel">
@@ -51,12 +63,18 @@
       };
 
       const toggleMusic = () => {
-        if (isPlaying) {
-          audioRef.current.pause();
-        } else {
-          audioRef.current.play().catch(error => console.error("Audio play failed:", error));
+        if (audioRef.current) {
+          if (isPlaying) {
+            audioRef.current.pause();
+          } else {
+            audioRef.current.play().catch(error => {
+              console.error("Audio play failed:", error);
+              setSubmitStatus('Audio playback requires user interaction.');
+              setTimeout(() => setSubmitStatus(null), 5000);
+            });
+          }
+          setIsPlaying(!isPlaying);
         }
-        setIsPlaying(!isPlaying);
       };
 
       useEffect(() => {
@@ -81,7 +99,7 @@
         }
 
         const generateParticles = () => {
-          const newParticles = Array.from({ length: 20 }, (_, i) => ({ // Reduced particles for performance
+          const newParticles = Array.from({ length: 20 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
@@ -118,11 +136,7 @@
             x: (p.x + Math.cos(p.direction * Math.PI / 180) * p.speed) % 100,
             y: (p.y + Math.sin(p.direction * Math.PI / 180) * p.speed) % 100,
           })));
-        }, 100); // Slower update for smoother effect
-
-        if (typeof AOS !== 'undefined') {
-          AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-        }
+        }, 100);
 
         return () => {
           window.removeEventListener('mousemove', handleMouseMove);
@@ -150,69 +164,68 @@
         });
       }, []);
 
-     const projects = [
-  {
-    id: 1,
-    title: "Edu Fee Manager",
-    description: "A comprehensive fee management system...",
-    tags: ["HTML", "CSS", "JS", "ASP.NET", "SQL Server"],
-    image: "Edu Fee Manager.png",
-    link: "#",
-    github: "#",
-    features: [
-      "Automated fee generation",
-      "Multi-branch support",
-      "Real-time reporting",
-      "Payment tracking"
-    ]
-  },
-  {
-    id: 2,
-    title: "Haven Hue - Hotel Reservation",
-    description: "An advanced hotel management platform...",
-    tags: ["HTML", "CSS", "JS", "ASP.NET", "SQL Server", "Three-tier architecture"],
-    image: "Hotel Reservation System.png",
-    link: "#",
-    github: "#",
-    features: [
-      "Room booking system",
-      "Guest management",
-      "Payment integration",
-      "Inventory control"
-    ]
-  },
-  {
-    id: 3,
-    title: "Admin Dashboard",
-    description: "A responsive admin dashboard...",
-    tags: ["React", "Tailwind CSS", "Chart.js", "Context API"],
-    image: "Admin Dashbaord.png",
-    link: "#",
-    github: "#",
-    features: [
-      "Interactive charts",
-      "User management",
-      "Real-time data",
-      "Responsive design"
-    ]
-  },
-  {
-    id: 4,
-    title: "Dream Decoder",
-    description: "An AI-powered app that interprets and categorizes your dreams.",
-    tags: ["HTML", "CSS", "JS", "Figma", "UI/UX"],
-    image: "DreamDecoder.png",
-    link: "#",
-    github: "#",
-    features: [
-      "Theme tagging (e.g., Flying, Falling, Teeth)",
-      "Mood-based interpretations (Funny, Poetic, Serious)",
-      "Smart dream categorization",
-      "Minimalist, responsive UI"
-    ]
-  }
-];
-
+      const projects = [
+        {
+          id: 1,
+          title: "Edu Fee Manager",
+          description: "A comprehensive fee management system for educational institutions with automated billing and reporting.",
+          tags: ["HTML", "CSS", "JS", "ASP.NET", "SQL Server"],
+          image: "Edu Fee Manager.png",
+          link: "#",
+          github: "#",
+          features: [
+            "Automated fee generation",
+            "Multi-branch support",
+            "Real-time reporting",
+            "Payment tracking"
+          ]
+        },
+        {
+          id: 2,
+          title: "Haven Hue - Hotel Reservation",
+          description: "An advanced hotel management platform with booking and inventory features.",
+          tags: ["HTML", "CSS", "JS", "ASP.NET", "SQL Server", "Three-tier architecture"],
+          image: "Hotel Reservation System.png",
+          link: "#",
+          github: "#",
+          features: [
+            "Room booking system",
+            "Guest management",
+            "Payment integration",
+            "Inventory control"
+          ]
+        },
+        {
+          id: 3,
+          title: "Admin Dashboard",
+          description: "A responsive admin dashboard with real-time data visualization.",
+          tags: ["React", "Tailwind CSS", "Chart.js", "Context API"],
+          image: "Admin Dashbaord.png",
+          link: "#",
+          github: "#",
+          features: [
+            "Interactive charts",
+            "User management",
+            "Real-time data",
+            "Responsive design"
+          ]
+        },
+        {
+          id: 4,
+          title: "Dream Decoder",
+          description: "An AI-powered app that interprets and categorizes your dreams with a minimalist UI.",
+          tags: ["HTML", "CSS", "JS", "Figma", "UI/UX"],
+          image: "DreamDecoder.png",
+          link: "#",
+          github: "#",
+          features: [
+            "Theme tagging (e.g., Flying, Falling, Teeth)",
+            "Mood-based interpretations (Funny, Poetic, Serious)",
+            "Smart dream categorization",
+            "Minimalist, responsive UI"
+          ]
+        }
+      ];
 
       const skills = [
         { category: "Frontend", items: [{ name: "HTML/CSS", level: 95, icon: "fab fa-html5", color: "text-orange-500" }, { name: "JavaScript", level: 90, icon: "fab fa-js", color: "text-yellow-400" }, { name: "React", level: 88, icon: "fab fa-react", color: "text-blue-400" }, { name: "Tailwind CSS", level: 85, icon: "fas fa-paint-brush", color: "text-cyan-400" }] },
@@ -222,9 +235,9 @@
       ];
 
       const testimonials = [
-        { id: 1, name: "Sarah Johnson", role: "CEO at TechSolutions", content: "Wajid delivered our project ahead of schedule...", avatar: "https://randomuser.me/api/portraits/women/44.jpg", rating: 5 },
-        { id: 2, name: "Michael Chen", role: "Product Manager at InnovateX", content: "Working with Wajid was a pleasure...", avatar: "https://randomuser.me/api/portraits/men/32.jpg", rating: 5 },
-        { id: 3, name: "Emma Rodriguez", role: "Director at DigitalAgency", content: "Wajid's technical expertise...", avatar: "https://randomuser.me/api/portraits/women/68.jpg", rating: 4 },
+        { id: 1, name: "Sarah Johnson", role: "CEO at TechSolutions", content: "Wajid delivered our project ahead of schedule with excellent quality.", avatar: "https://randomuser.me/api/portraits/women/44.jpg", rating: 5 },
+        { id: 2, name: "Michael Chen", role: "Product Manager at InnovateX", content: "Working with Wajid was a pleasure; his expertise is unmatched.", avatar: "https://randomuser.me/api/portraits/men/32.jpg", rating: 5 },
+        { id: 3, name: "Emma Rodriguez", role: "Director at DigitalAgency", content: "Wajid's technical expertise transformed our project.", avatar: "https://randomuser.me/api/portraits/women/68.jpg", rating: 4 },
       ];
 
       const stats = [
@@ -304,12 +317,12 @@
           {/* Custom Cursor */}
           <div
             className="fixed z-50 w-6 h-6 rounded-full bg-indigo-500/30 mix-blend-difference pointer-events-none transition-transform duration-100 ease-out"
-            style={{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px`, transform: `translate(-50%, -50%) scale(${menuOpen ? 2 : 1})` }} // Reduced scale for subtlety
+            style={{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px`, transform: `translate(-50%, -50%) scale(${menuOpen ? 2 : 1})` }}
           />
 
           {/* Audio */}
-          <audio ref={audioRef} loop volume="0.3"> {/* Lowered volume for soft effect */}
-            <source src="https://www.bensound.com/bensound-music/bensound-summer.mp3" type="audio/mpeg" /> {/* Placeholder for soft music */}
+          <audio ref={audioRef} loop volume="0.3">
+            <source src="https://www.bensound.com/bensound-music/bensound-summer.mp3" type="audio/mpeg" />
           </audio>
 
           {/* Navigation */}
@@ -673,54 +686,16 @@
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`fixed bottom-2 sm:bottom-4 right-2 sm:right-4 w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-indigo-600 text-white shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 ${window.scrollY > 300 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} aria-label="Back to top">
             <i className="fas fa-arrow-up text-sm sm:text-base" />
           </button>
-
-          <style>{`
-            .font-inter { font-family: 'Inter', sans-serif; }
-            .font-poppins { font-family: 'Poppins', sans-serif; }
-            @keyframes slide-in { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-            @keyframes pop-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-            @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } } /* Reduced bounce intensity */
-            @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-            .animate-slide-in { animation: slide-in 0.6s ease-out; }
-            .animate-pop-in { animation: pop-in 0.4s ease-out; }
-            .animate-bounce { animation: bounce 1.5s infinite; }
-            .animate-spin-slow { animation: spin-slow 6s linear infinite; }
-            .parallax { background-attachment: fixed; background-size: cover; background-position: center; }
-            .card-3d { transform: perspective(1000px) rotateX(0) rotateY(0); transition: transform 0.5s ease-out; }
-            .card-glare { pointer-events: none; }
-            .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-            @media (max-width: 640px) {
-              .text-xl { font-size: 1.25rem; }
-              .text-2xl { font-size: 1.5rem; }
-              .text-3xl { font-size: 1.875rem; }
-              .text-4xl { font-size: 2rem; }
-              .parallax { background-attachment: scroll; }
-              .card-3d:hover { transform: perspective(1000px) rotateX(0) rotateY(0) scale(1.05) !important; }
-              .grid-cols-2 { grid-template-columns: 1fr; }
-              .grid-cols-3 { grid-template-columns: 1fr; }
-              .grid-cols-4 { grid-template-columns: 1fr; }
-              .flex-row { flex-direction: column; }
-            }
-            ::-webkit-scrollbar { width: 4px; height: 4px; }
-            ::-webkit-scrollbar-track { background: #f1f1f1; }
-            ::-webkit-scrollbar-thumb { background: #888; border-radius: 2px; }
-            ::-webkit-scrollbar-thumb:hover { background: #555; }
-            .dark ::-webkit-scrollbar-track { background: #1a1a1a; }
-            .dark ::-webkit-scrollbar-thumb { background: #444; }
-            .dark ::-webkit-scrollbar-thumb:hover { background: #666; }
-          `}</style>
         </div>
       );
     };
 
     ReactDOM.render(<App />, document.getElementById('root'), () => {
       console.log('App rendered successfully');
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      emailjs.init('YOUR_USER_ID');
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+      }
+      emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS User ID
     });
   </script>
 </body>
