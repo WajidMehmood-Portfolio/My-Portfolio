@@ -116,8 +116,8 @@
 
   /* Hero section profile image size for mobile (XXL) */
   .w-20, .w-24, .w-36, .w-40 {
-    width: 200px !important; /* XXL size for mobile */
-    height: 200px !important; /* Matching height for circular crop */
+    width: 200px !important;
+    height: 200px !important;
   }
 
   /* Ensure image doesn’t pixelate or shrink on mobile */
@@ -126,24 +126,53 @@
     min-height: 200px !important;
     object-fit: cover;
   }
+
+  /* Testimonials avatar images on small screens */
+  #testimonials .w-8,
+  #testimonials .w-10 {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+  #testimonials .rounded-full img {
+    width: 100% !overflow-hidden;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Footer profile image on small screens */
+  footer .w-12,
+  footer .w-14,
+  footer .w-20 {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+  }
+  footer .rounded-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /* Desktop and larger screens */
 @media (min-width: 641px) {
   .w-20 {
-    width: 150px !important; /* Increased from 80px */
+    width: 150px !important;
     height: 150px !important;
   }
   .w-24 {
-    width: 180px !important; /* Increased from 96px */
+    width: 180px !important;
     height: 180px !important;
   }
   .w-36 {
-    width: 250px !important; /* Increased from 144px */
+    width: 250px !important;
     height: 250px !important;
   }
   .w-40 {
-    width: 280px !important; /* Increased from 160px */
+    width: 280px !important;
     height: 280px !important;
   }
 }
@@ -179,29 +208,73 @@
 @media (max-width: 640px) {
   /* Project card images */
   .card-3d .aspect-video img {
-    max-width: 100% !important; /* Prevent image from exceeding container */
-    height: auto !important; /* Maintain aspect ratio */
+    max-width: 100% !important;
+    height: auto !important;
   }
 
   /* Lightbox image */
   .lightbox img {
-    max-width: 100% !important; /* Ensure lightbox image fits mobile screen */
-    max-height: 200px !important; /* Limit height on mobile */
+    max-width: 100% !important;
+    max-height: 200px !important;
   }
 }
 
 /* Additional global image styling */
 img {
-  max-width: 100%; /* Ensure all images respect container width */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Ensure proper cropping for circular images */
-  image-rendering: -webkit-optimize-contrast; /* Improve clarity on some devices */
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Specific styling for circular profile image */
 .rounded-full img {
-  object-fit: cover; /* Ensures the image fills the circular container */
-  width: 100%; /* Fill the parent container */
-  height: 100%; /* Fill the parent container */
-  border-radius: inherit; /* Match the parent's rounded shape */
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* Specific heading adjustments for both modes with higher specificity */
+#projects h2.section-title {
+  color: #1f2937 !important; /* Default dark gray for light mode */
+}
+.dark #projects h2.section-title {
+  color: #f9fafb !important; /* Light gray for dark mode */
+}
+
+#contact h2.section-title {
+  color: #1f2937 !important; /* Default dark gray for light mode */
+}
+.dark #contact h2.section-title {
+  color: #f9fafb !important; /* Light gray for dark mode */
+}
+
+#skills h2.section-title {
+  color: #1f2937 !important; /* Default dark gray for light mode */
+}
+.dark #skills h2.section-title {
+  color: #f9fafb !important; /* Light gray for dark mode */
+}
+
+#testimonials h2.section-title {
+  color: #1f2937 !important; /* Default dark gray for light mode */
+}
+.dark #testimonials h2.section-title {
+  color: #f9fafb !important; /* Light gray for dark mode */
+}
+
+/* Ensure gradient span is visible and doesn’t hide base text */
+#projects h2 span,
+#contact h2 span,
+#skills h2 span,
+#testimonials h2 span {
+  color: transparent; /* Preserve gradient effect */
+  display: inline; /* Ensure it doesn’t block base text */
+}
+.dark #projects h2 span,
+.dark #contact h2 span,
+.dark #skills h2 span,
+.dark #testimonials h2 span {
+  background-image: linear-gradient(to right, #818cf8, #a78bfa) !important;
 }
