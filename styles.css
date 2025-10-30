@@ -1,3 +1,5 @@
+/* styles.css */
+
 /* Font families */
 .font-inter {
   font-family: 'Inter', sans-serif;
@@ -79,6 +81,88 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hero Section Profile Image Fix */
+.profile-img-container {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #818cf8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-img-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Testimonials Section Fix */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Footer Section Fix */
+.footer-profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+  border: 2px solid #818cf8;
+}
+
+.footer-profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 /* Responsive Styles */
@@ -114,66 +198,59 @@
     flex-direction: column;
   }
 
-  /* Hero section profile image size for mobile (XXL) */
-  .w-20, .w-24, .w-36, .w-40 {
-    width: 200px !important;
-    height: 200px !important;
-  }
-
-  /* Ensure image doesn’t pixelate or shrink on mobile */
-  .rounded-full img {
-    min-width: 200px !important;
-    min-height: 200px !important;
-    object-fit: cover;
+  /* Hero section profile image size for mobile */
+  .profile-img-container {
+    width: 120px !important;
+    height: 120px !important;
   }
 
   /* Testimonials avatar images on small screens */
-  #testimonials .w-8,
-  #testimonials .w-10 {
+  .testimonial-avatar {
     width: 40px !important;
     height: 40px !important;
-    min-width: 40px !important;
-    min-height: 40px !important;
+    margin-right: 0.75rem;
   }
-  #testimonials .rounded-full img {
-    width: 100% !overflow-hidden;
-    height: 100%;
-    object-fit: cover;
+
+  /* Testimonial card layout for mobile */
+  .testimonial-header {
+    align-items: flex-start;
   }
 
   /* Footer profile image on small screens */
-  footer .w-12,
-  footer .w-14,
-  footer .w-20 {
+  .footer-profile-img {
     width: 60px !important;
     height: 60px !important;
-    min-width: 60px !important;
-    min-height: 60px !important;
   }
-  footer .rounded-full img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  
+  /* Footer social icons */
+  .footer-social-icon {
+    width: 36px !important;
+    height: 36px !important;
   }
 }
 
 /* Desktop and larger screens */
 @media (min-width: 641px) {
-  .w-20 {
-    width: 150px !important;
-    height: 150px !important;
-  }
-  .w-24 {
+  .profile-img-container {
     width: 180px !important;
     height: 180px !important;
   }
-  .w-36 {
-    width: 250px !important;
-    height: 250px !important;
+  
+  .footer-profile-img {
+    width: 80px !important;
+    height: 80px !important;
   }
-  .w-40 {
-    width: 280px !important;
-    height: 280px !important;
+  
+  .footer-social-icon {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-img-container {
+    width: 200px !important;
+    height: 200px !important;
   }
 }
 
@@ -264,17 +341,119 @@ img {
   color: #f9fafb !important; /* Light gray for dark mode */
 }
 
-/* Ensure gradient span is visible and doesn’t hide base text */
+/* Ensure gradient span is visible and doesn't hide base text */
 #projects h2 span,
 #contact h2 span,
 #skills h2 span,
 #testimonials h2 span {
   color: transparent; /* Preserve gradient effect */
-  display: inline; /* Ensure it doesn’t block base text */
+  display: inline; /* Ensure it doesn't block base text */
 }
 .dark #projects h2 span,
 .dark #contact h2 span,
 .dark #skills h2 span,
 .dark #testimonials h2 span {
   background-image: linear-gradient(to right, #818cf8, #a78bfa) !important;
+}
+
+/* Fix for mobile navigation */
+@media (max-width: 768px) {
+  nav .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Fix for form elements */
+input, textarea {
+  box-sizing: border-box;
+}
+
+/* Ensure consistent spacing */
+section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Additional fixes for testimonials section */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure proper spacing in hero section */
+#home {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Fix for footer alignment */
+footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Bottom Navigation Styles */
+.bottom-nav {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.bottom-nav .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.bottom-nav button {
+  flex: 1;
+  min-width: 0;
+  border-radius: 8px;
+  margin: 0 2px;
+}
+
+.bottom-nav button:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+.bottom-nav button:active {
+  transform: scale(0.95);
+}
+
+/* Ensure content doesn't get hidden behind the bottom nav */
+body {
+  padding-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+  
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* Adjust back-to-top button position for mobile */
+@media (max-width: 767px) {
+  .fixed.bottom-16 {
+    bottom: 80px;
+  }
+  
+  .fixed.bottom-20 {
+    bottom: 90px;
+  }
 }
